@@ -12,7 +12,6 @@ import PhaseTimer from '@/components/practice/PhaseTimer'
 import RecordingControls from '@/components/practice/RecordingControls'
 import Playback from '@/components/practice/Playback'
 import HistoryList from '@/components/practice/HistoryList'
-import StorageNotice from '@/components/practice/StorageNotice'
 import MicModal from '@/components/practice/MicModal'
 
 const THINK_SECS = 30
@@ -31,7 +30,6 @@ export default function PracticePage() {
   const [analyser, setAnalyser] = useState<AnalyserNode | null>(null)
   const [homeStats, setHomeStats] = useState<{ total: number; totalSecs: number } | null>(null)
   const [streak, setStreak]     = useState(0)
-  const [showNotice, setShowNotice]   = useState(false)
   const [showMicModal, setShowMicModal] = useState(false)
   const [noRecord, setNoRecord]       = useState(false)
 
@@ -46,7 +44,6 @@ export default function PracticePage() {
     setQueue(createTopicQueue(saved))
     setStreak(getStreak())
     getStats().then(s => setHomeStats({ total: s.total, totalSecs: s.totalSecs }))
-    if (!localStorage.getItem('storage-notice-seen')) setShowNotice(true)
   }, [])
 
   function switchLang(l: Language) {
@@ -195,12 +192,7 @@ export default function PracticePage() {
     setSessions(prev => prev.filter(s => s.id !== id))
   }
 
-  function dismissNotice() {
-    localStorage.setItem('storage-notice-seen', '1')
-    setShowNotice(false)
-  }
-
-  const inGame    = phase === 'think' || phase === 'speak'
+const inGame    = phase === 'think' || phase === 'speak'
   const totalMins = homeStats ? Math.round(homeStats.totalSecs / 60) : 0
 
   return (
@@ -298,7 +290,6 @@ export default function PracticePage() {
           <HistoryList sessions={sessions} onDeleted={handleSessionDeleted} />
         </div>
       )}
-      {showNotice   && <StorageNotice onClose={dismissNotice} />}
       {showMicModal && <MicModal onRecord={() => confirmRecord(true)} onSkip={() => confirmRecord(false)} />}
     </main>
   )
