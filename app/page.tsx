@@ -12,6 +12,8 @@ import PhaseTimer from '@/components/practice/PhaseTimer'
 import RecordingControls from '@/components/practice/RecordingControls'
 import Playback from '@/components/practice/Playback'
 import HistoryList from '@/components/practice/HistoryList'
+import StorageNotice from '@/components/practice/StorageNotice'
+import MicModal from '@/components/practice/MicModal'
 
 const THINK_SECS = 30
 const SPEAK_SECS = 60
@@ -29,6 +31,9 @@ export default function PracticePage() {
   const [analyser, setAnalyser] = useState<AnalyserNode | null>(null)
   const [homeStats, setHomeStats] = useState<{ total: number; totalSecs: number } | null>(null)
   const [streak, setStreak]     = useState(0)
+  const [showNotice, setShowNotice]   = useState(false)
+  const [showMicModal, setShowMicModal] = useState(false)
+  const [noRecord, setNoRecord]       = useState(false)
 
   const timerRef    = useRef<ReturnType<typeof setInterval> | null>(null)
   const recorderRef = useRef<RecorderHandle | null>(null)
@@ -41,6 +46,7 @@ export default function PracticePage() {
     setQueue(createTopicQueue(saved))
     setStreak(getStreak())
     getStats().then(s => setHomeStats({ total: s.total, totalSecs: s.totalSecs }))
+    if (!localStorage.getItem('storage-notice-seen')) setShowNotice(true)
   }, [])
 
   function switchLang(l: Language) {
@@ -98,6 +104,12 @@ export default function PracticePage() {
   }, [phase]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function startThink() {
+    setShowMicModal(true)
+  }
+
+  function confirmRecord(record: boolean) {
+    setNoRecord(!record)
+    setShowMicModal(false)
     setPhase('think')
     setTimeLeft(THINK_SECS)
     setMicError(false)
@@ -105,6 +117,12 @@ export default function PracticePage() {
   }
 
   async function beginSpeak() {
+    if (noRecord) {
+      speakStart.current = Date.now()
+      setPhase('speak')
+      setTimeLeft(SPEAK_SECS)
+      return
+    }
     try {
       const handle = await startRecording()
       recorderRef.current = handle
@@ -119,6 +137,10 @@ export default function PracticePage() {
   }
 
   async function stopRecording() {
+    if (noRecord) {
+      nextTopic()
+      return
+    }
     if (!recorderRef.current) return
     const blob = await recorderRef.current.stop()
     recorderRef.current = null
@@ -159,6 +181,7 @@ export default function PracticePage() {
       return next
     })
     setRecordedBlob(null)
+    setNoRecord(false)
     setPhase('home')
   }
 
@@ -172,38 +195,43 @@ export default function PracticePage() {
     setSessions(prev => prev.filter(s => s.id !== id))
   }
 
+  function dismissNotice() {
+    localStorage.setItem('storage-notice-seen', '1')
+    setShowNotice(false)
+  }
+
   const inGame    = phase === 'think' || phase === 'speak'
   const totalMins = homeStats ? Math.round(homeStats.totalSecs / 60) : 0
 
   return (
     <main className="pr-screen">
       <nav className="pr-nav">
-        <span className="pr-nav-brand">ThinkSpeak</span>
-
-        <div className="pr-nav-right">
-          {!inGame && (
-            <div className="lang-toggle">
-              <button
-                className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
-                onClick={() => switchLang('en')}
-              >EN</button>
-              <button
-                className={`lang-btn ${lang === 'fr' ? 'active' : ''}`}
-                onClick={() => switchLang('fr')}
-              >FR</button>
-            </div>
-          )}
-
-          {phase !== 'history' && !inGame && (
-            <button className="pr-nav-link" onClick={openHistory}>history</button>
-          )}
-          {phase !== 'history' && !inGame && (
-            <Link href="/settings" className="pr-nav-link">settings</Link>
-          )}
-          {phase === 'history' && (
-            <button className="pr-nav-link" onClick={() => setPhase('home')}>back</button>
-          )}
+        <div className="pr-nav-top">
+          <span className="pr-nav-brand">ThinkSpeak</span>
+          <div className="pr-nav-actions">
+            {phase !== 'history' && !inGame && (
+              <button className="pr-nav-link" onClick={openHistory}>history</button>
+            )}
+            {phase !== 'history' && !inGame && (
+              <Link href="/settings" className="pr-nav-link">settings</Link>
+            )}
+            {phase === 'history' && (
+              <button className="pr-nav-link" onClick={() => setPhase('home')}>back</button>
+            )}
+          </div>
         </div>
+
+        {!inGame && (
+          <div className="pr-nav-langs">
+            {(['en', 'fr', 'es', 'ar', 'ja'] as const).map(l => (
+              <button
+                key={l}
+                className={`lang-pill ${lang === l ? 'active' : ''}`}
+                onClick={() => switchLang(l)}
+              >{l.toUpperCase()}</button>
+            ))}
+          </div>
+        )}
       </nav>
 
       {phase === 'home' && topic && (
@@ -270,6 +298,8 @@ export default function PracticePage() {
           <HistoryList sessions={sessions} onDeleted={handleSessionDeleted} />
         </div>
       )}
+      {showNotice   && <StorageNotice onClose={dismissNotice} />}
+      {showMicModal && <MicModal onRecord={() => confirmRecord(true)} onSkip={() => confirmRecord(false)} />}
     </main>
   )
 }

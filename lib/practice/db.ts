@@ -68,7 +68,7 @@ export async function getStats(): Promise<{ total: number; totalSecs: number; by
     const req = tx.objectStore(STORE).getAll()
     req.onsuccess = () => {
       const sessions = req.result as PracticeSession[]
-      const byLang: Record<Language, number> = { en: 0, fr: 0 }
+      const byLang: Record<Language, number> = { en: 0, fr: 0, es: 0, ar: 0, ja: 0 }
       for (const s of sessions) byLang[s.language] = (byLang[s.language] ?? 0) + 1
       resolve({
         total:     sessions.length,

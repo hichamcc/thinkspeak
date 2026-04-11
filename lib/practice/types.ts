@@ -1,4 +1,4 @@
-export type Language = 'en' | 'fr'
+export type Language = 'en' | 'fr' | 'es' | 'ar' | 'ja'
 
 export type Phase = 'home' | 'think' | 'speak' | 'done' | 'history'
 

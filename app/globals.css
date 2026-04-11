@@ -37,16 +37,46 @@ html, body {
 
 .pr-nav {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 28px;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 28px;
   border-bottom: 1px solid var(--border);
 }
 
-.pr-nav-right {
+.pr-nav-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pr-nav-actions {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+.pr-nav-langs {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .pr-nav {
+    flex-direction: row;
+    align-items: center;
+    padding: 20px 28px;
+    gap: 20px;
+  }
+
+  .pr-nav-top {
+    flex: 1;
+  }
+
+  .pr-nav-langs {
+    justify-content: flex-start;
+    order: 0;
+  }
 }
 
 .pr-nav-brand {
@@ -74,38 +104,32 @@ html, body {
 
 .pr-nav-link:hover { color: var(--fg); }
 
-/* ─── Language toggle ─────────────────────────── */
+/* ─── Language pills ──────────────────────────── */
 
-.lang-toggle {
-  display: flex;
+.lang-pill {
+  padding: 4px 10px;
   border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-.lang-btn {
-  padding: 5px 12px;
+  border-radius: 20px;
   background: transparent;
-  border: none;
   font-family: inherit;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.1em;
   color: var(--muted);
   cursor: pointer;
-  transition: background 0.1s, color 0.1s;
+  transition: border-color 0.1s, color 0.1s, background 0.1s;
 }
 
-.lang-btn + .lang-btn {
-  border-left: 1.5px solid var(--border);
-}
-
-.lang-btn.active {
+.lang-pill.active {
   background: var(--fg);
   color: var(--bg);
+  border-color: var(--fg);
 }
 
-.lang-btn:not(.active):hover { color: var(--fg); }
+.lang-pill:not(.active):hover {
+  color: var(--fg);
+  border-color: var(--fg);
+}
 
 /* ─── Home ────────────────────────────────────── */
 
@@ -715,3 +739,84 @@ kbd {
 
 .note-input::placeholder { color: var(--muted); opacity: 0.6; }
 .note-input:focus { border-bottom-color: var(--fg); }
+
+/* ─── Storage notice modal ────────────────────── */
+
+.notice-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+}
+
+.notice-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  max-width: 380px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.notice-title {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+
+.notice-body {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.notice-btn {
+  margin-top: 4px;
+  align-self: flex-start;
+  padding: 10px 24px;
+  background: var(--fg);
+  color: var(--bg);
+  border: none;
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.1s;
+}
+
+.notice-btn:hover { opacity: 0.75; }
+
+.mic-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.mic-skip-btn {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+  letter-spacing: 0.04em;
+  transition: color 0.1s;
+}
+
+.mic-skip-btn:hover { color: var(--fg); }
