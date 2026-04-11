@@ -12,6 +12,7 @@ import PhaseTimer from '@/components/practice/PhaseTimer'
 import RecordingControls from '@/components/practice/RecordingControls'
 import Playback from '@/components/practice/Playback'
 import HistoryList from '@/components/practice/HistoryList'
+import FeedbackModal from '@/components/practice/FeedbackModal'
 
 const THINK_SECS = 30
 const SPEAK_SECS = 60
@@ -174,6 +175,7 @@ export default function PracticePage() {
 
 const inGame    = phase === 'think' || phase === 'speak'
   const totalMins = homeStats ? Math.round(homeStats.totalSecs / 60) : 0
+  const [showFeedback, setShowFeedback] = useState(false)
 
   return (
     <main className="pr-screen">
@@ -278,6 +280,8 @@ const inGame    = phase === 'think' || phase === 'speak'
           <HistoryList sessions={sessions} onDeleted={handleSessionDeleted} />
         </div>
       )}
+      <button className="feedback-btn" onClick={() => setShowFeedback(true)}>feedback</button>
+      {showFeedback && <FeedbackModal onClose={() => setShowFeedback(false)} />}
     </main>
   )
 }
