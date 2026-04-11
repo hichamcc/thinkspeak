@@ -12,7 +12,6 @@ import PhaseTimer from '@/components/practice/PhaseTimer'
 import RecordingControls from '@/components/practice/RecordingControls'
 import Playback from '@/components/practice/Playback'
 import HistoryList from '@/components/practice/HistoryList'
-import MicModal from '@/components/practice/MicModal'
 
 const THINK_SECS = 30
 const SPEAK_SECS = 60
@@ -30,8 +29,6 @@ export default function PracticePage() {
   const [analyser, setAnalyser] = useState<AnalyserNode | null>(null)
   const [homeStats, setHomeStats] = useState<{ total: number; totalSecs: number } | null>(null)
   const [streak, setStreak]     = useState(0)
-  const [showMicModal, setShowMicModal] = useState(false)
-  const [noRecord, setNoRecord]       = useState(false)
 
   const timerRef    = useRef<ReturnType<typeof setInterval> | null>(null)
   const recorderRef = useRef<RecorderHandle | null>(null)
@@ -101,12 +98,6 @@ export default function PracticePage() {
   }, [phase]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function startThink() {
-    setShowMicModal(true)
-  }
-
-  function confirmRecord(record: boolean) {
-    setNoRecord(!record)
-    setShowMicModal(false)
     setPhase('think')
     setTimeLeft(THINK_SECS)
     setMicError(false)
@@ -114,12 +105,6 @@ export default function PracticePage() {
   }
 
   async function beginSpeak() {
-    if (noRecord) {
-      speakStart.current = Date.now()
-      setPhase('speak')
-      setTimeLeft(SPEAK_SECS)
-      return
-    }
     try {
       const handle = await startRecording()
       recorderRef.current = handle
@@ -134,10 +119,6 @@ export default function PracticePage() {
   }
 
   async function stopRecording() {
-    if (noRecord) {
-      nextTopic()
-      return
-    }
     if (!recorderRef.current) return
     const blob = await recorderRef.current.stop()
     recorderRef.current = null
@@ -178,7 +159,6 @@ export default function PracticePage() {
       return next
     })
     setRecordedBlob(null)
-    setNoRecord(false)
     setPhase('home')
   }
 
@@ -245,6 +225,11 @@ const inGame    = phase === 'think' || phase === 'speak'
           )}
           <button className="pr-start" onClick={startThink}>start</button>
           <button className="pr-skip" onClick={nextTopic}>skip</button>
+          <p className="home-mic-note">
+            <span className="home-mic-note-label">note</span>{' '}
+            your browser will ask for mic access so you can listen back and improve.
+            recordings stay on your device only. deny mic to practice without recording.
+          </p>
           <div className="kbd-hint"><kbd>space</kbd> start · <kbd>→</kbd> skip</div>
         </div>
       )}
@@ -290,7 +275,6 @@ const inGame    = phase === 'think' || phase === 'speak'
           <HistoryList sessions={sessions} onDeleted={handleSessionDeleted} />
         </div>
       )}
-      {showMicModal && <MicModal onRecord={() => confirmRecord(true)} onSkip={() => confirmRecord(false)} />}
     </main>
   )
 }

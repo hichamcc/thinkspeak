@@ -582,6 +582,24 @@ html, body {
   color: var(--muted);
 }
 
+.home-mic-note-label {
+  color: var(--cell-wrong);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.home-mic-note {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  color: var(--muted);
+  opacity: 0.6;
+  text-align: center;
+  max-width: 320px;
+}
+
 .home-streak {
   font-size: 10px;
   font-weight: 700;
