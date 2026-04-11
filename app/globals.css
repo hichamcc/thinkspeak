@@ -500,6 +500,17 @@ html, body {
   gap: 20px;
 }
 
+.settings-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 220px;
+}
+
+.settings-about-link {
+  margin-top: 12px;
+}
+
 .settings-label {
   font-size: 10px;
   font-weight: 700;
@@ -838,3 +849,37 @@ kbd {
 }
 
 .mic-skip-btn:hover { color: var(--fg); }
+
+/* ─── About page ──────────────────────────────── */
+
+.about-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: 40px 28px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.about-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.about-heading {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.about-text {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--muted);
+}
