@@ -105,6 +105,11 @@ export default function PracticePage() {
     setRecordedBlob(null)
   }
 
+  function cancelThink() {
+    if (timerRef.current) clearInterval(timerRef.current)
+    setPhase('home')
+  }
+
   async function beginSpeak() {
     try {
       const handle = await startRecording()
@@ -244,6 +249,7 @@ const inGame    = phase === 'think' || phase === 'speak'
           <p className="pr-phase-name">think</p>
           <TopicCard topic={topic} lang={lang} showHints />
           <PhaseTimer label="think" timeLeft={timeLeft} total={THINK_SECS} />
+          <button className="pr-skip" onClick={cancelThink}>back</button>
         </div>
       )}
 
