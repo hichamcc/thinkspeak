@@ -254,7 +254,7 @@ const inGame    = phase === 'think' || phase === 'speak'
         <div className="pr-phase">
           <p className="pr-phase-name">{LABELS.think[lang]}</p>
           <TopicCard topic={topic} lang={lang} showHints />
-          <PhaseTimer label="think" timeLeft={timeLeft} total={THINK_SECS} />
+          <PhaseTimer label={lang === 'en' ? 'think' : `think / ${LABELS.think[lang]}`} timeLeft={timeLeft} total={THINK_SECS} />
           <button className="pr-skip" onClick={cancelThink}>back</button>
         </div>
       )}
@@ -263,7 +263,7 @@ const inGame    = phase === 'think' || phase === 'speak'
         <div className="pr-phase">
           <p className="pr-phase-name">{LABELS.speak[lang]}</p>
           <TopicCard topic={topic} lang={lang} dim />
-          <PhaseTimer label="speak" timeLeft={timeLeft} total={SPEAK_SECS} />
+          <PhaseTimer label={lang === 'en' ? 'speak' : `speak / ${LABELS.speak[lang]}`} timeLeft={timeLeft} total={SPEAK_SECS} />
           <RecordingControls onStop={stopRecording} analyser={analyser ?? undefined} />
           <div className="kbd-hint"><kbd>space</kbd> stop</div>
         </div>
