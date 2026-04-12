@@ -17,6 +17,12 @@ import FeedbackModal from '@/components/practice/FeedbackModal'
 const THINK_SECS = 30
 const SPEAK_SECS = 60
 
+const LABELS: Record<string, Record<string, string>> = {
+  think: { en: 'think', fr: 'réfléchis', es: 'piensa',  ar: 'فكّر',   ja: '考えて' },
+  speak: { en: 'speak', fr: 'parle',     es: 'habla',   ar: 'تحدّث',  ja: '話して' },
+  done:  { en: 'done',  fr: 'terminé',   es: 'listo',   ar: 'انتهى',  ja: '完了'   },
+}
+
 export default function PracticePage() {
   const [lang, setLang]         = useState<Language>('en')
   const [phase, setPhase]       = useState<Phase>('home')
@@ -116,12 +122,12 @@ export default function PracticePage() {
       recorderRef.current = handle
       speakStart.current  = Date.now()
       setAnalyser(handle.analyser)
-      setPhase('speak')
-      setTimeLeft(SPEAK_SECS)
     } catch {
-      setMicError(true)
-      setPhase('home')
+      // mic denied — continue without recording
     }
+    speakStart.current = Date.now()
+    setPhase('speak')
+    setTimeLeft(SPEAK_SECS)
   }
 
   async function stopRecording() {
@@ -246,7 +252,7 @@ const inGame    = phase === 'think' || phase === 'speak'
 
       {phase === 'think' && topic && (
         <div className="pr-phase">
-          <p className="pr-phase-name">think</p>
+          <p className="pr-phase-name">{LABELS.think[lang]}</p>
           <TopicCard topic={topic} lang={lang} showHints />
           <PhaseTimer label="think" timeLeft={timeLeft} total={THINK_SECS} />
           <button className="pr-skip" onClick={cancelThink}>back</button>
@@ -255,7 +261,7 @@ const inGame    = phase === 'think' || phase === 'speak'
 
       {phase === 'speak' && topic && (
         <div className="pr-phase">
-          <p className="pr-phase-name">speak</p>
+          <p className="pr-phase-name">{LABELS.speak[lang]}</p>
           <TopicCard topic={topic} lang={lang} dim />
           <PhaseTimer label="speak" timeLeft={timeLeft} total={SPEAK_SECS} />
           <RecordingControls onStop={stopRecording} analyser={analyser ?? undefined} />
@@ -265,7 +271,7 @@ const inGame    = phase === 'think' || phase === 'speak'
 
       {phase === 'done' && topic && recordedBlob && (
         <div className="pr-phase">
-          <p className="pr-phase-name">done</p>
+          <p className="pr-phase-name">{LABELS.done[lang]}</p>
           <TopicCard topic={topic} lang={lang} dim />
           <Playback
             blob={recordedBlob}
