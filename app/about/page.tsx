@@ -1,4 +1,11 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'About & Privacy',
+  description: 'How ThinkSpeak works, why we record your voice, and how your data stays private on your device.',
+  alternates: { canonical: 'https://thinkspeak.vercel.app/about' },
+}
 
 export default function AboutPage() {
   return (

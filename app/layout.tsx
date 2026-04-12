@@ -2,14 +2,31 @@ import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
+const BASE_URL = 'https://thinkspeak.vercel.app'
+
 export const metadata: Metadata = {
-  title: 'Speak Practice',
-  description: 'Language speaking practice — EN / FR',
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: 'ThinkSpeak — Language Speaking Practice',
+    template: '%s | ThinkSpeak',
+  },
+  description: 'Practice speaking English, French, Spanish, Arabic, or Japanese. 30 seconds to think, 60 seconds to speak. No account, no server — everything stays on your device.',
+  keywords: ['language practice', 'speaking practice', 'english practice', 'french practice', 'spanish practice', 'arabic practice', 'japanese practice', 'fluency', 'oral practice'],
+  alternates: {
+    canonical: BASE_URL,
+  },
   openGraph: {
-    images: [{ url: '/og.png' }],
+    title: 'ThinkSpeak — Language Speaking Practice',
+    description: 'Practice speaking any language. Think 30s, speak 60s, listen back.',
+    url: BASE_URL,
+    siteName: 'ThinkSpeak',
+    images: [{ url: '/og.png', width: 1200, height: 630 }],
+    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
+    title: 'ThinkSpeak — Language Speaking Practice',
+    description: 'Practice speaking any language. Think 30s, speak 60s, listen back.',
     images: ['/og.png'],
   },
 }
