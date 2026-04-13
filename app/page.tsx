@@ -264,8 +264,9 @@ export default function PracticePage() {
             <p className="pr-error">Microphone access denied. Allow it in your browser settings.</p>
           )}
           <div className="home-headline">
+            <span className="home-eyebrow">speaking practice</span>
             <h1 className="home-title">Think. Speak. Repeat.</h1>
-            <p className="home-sub">30 seconds to think · 60 seconds to speak</p>
+            <p className="home-sub">Get a topic, think for 30 seconds, speak for 60. Build fluency in any language.</p>
           </div>
           <span className="queue-pos">{topicIdx + 1} / {queue.length}</span>
           <TopicCard topic={topic} lang={lang} />
@@ -282,6 +283,9 @@ export default function PracticePage() {
             your browser will ask for mic access so you can listen back and improve.
             recordings stay on your device only. deny mic to practice without recording.
           </p>
+          <button className="home-lang-suggest" onClick={() => setShowFeedback(true)}>
+            want to practice in another language? let us know →
+          </button>
           <div className="kbd-hint"><kbd>space</kbd> start · <kbd>→</kbd> next topic</div>
         </div>
       )}
