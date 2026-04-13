@@ -201,6 +201,9 @@ const inGame    = phase === 'think' || phase === 'speak'
               <Link href="/settings" className="pr-nav-link">settings</Link>
             )}
             {phase !== 'history' && !inGame && (
+              <Link href="/blog" className="pr-nav-link">blog</Link>
+            )}
+            {phase !== 'history' && !inGame && (
               <Link href="/about" className="pr-nav-link">about</Link>
             )}
             {phase === 'history' && (
