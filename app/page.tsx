@@ -184,16 +184,18 @@ export default function PracticePage() {
     setSessions(prev => prev.filter(s => s.id !== id))
   }
 
-const inGame    = phase === 'think' || phase === 'speak'
+  const inGame    = phase === 'think' || phase === 'speak'
   const totalMins = homeStats ? Math.round(homeStats.totalSecs / 60) : 0
   const [showFeedback, setShowFeedback] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
     <main className="pr-screen">
       <nav className="pr-nav">
         <div className="pr-nav-top">
           <span className="pr-nav-brand">ThinkSpeak</span>
-          <div className="pr-nav-actions">
+          {/* Desktop links */}
+          <div className="pr-nav-actions pr-nav-actions--desktop">
             {phase !== 'history' && !inGame && (
               <button className="pr-nav-link" onClick={openHistory}>history</button>
             )}
@@ -210,7 +212,38 @@ const inGame    = phase === 'think' || phase === 'speak'
               <button className="pr-nav-link" onClick={() => setPhase('home')}>back</button>
             )}
           </div>
+          {/* Mobile hamburger */}
+          {!inGame && (
+            <button
+              className="pr-nav-burger"
+              onClick={() => setMenuOpen(o => !o)}
+              aria-label="Menu"
+            >
+              <span className={`burger-icon ${menuOpen ? 'open' : ''}`} />
+            </button>
+          )}
         </div>
+
+        {/* Mobile dropdown */}
+        {menuOpen && !inGame && (
+          <div className="pr-nav-mobile-menu" onClick={() => setMenuOpen(false)}>
+            {phase !== 'history' && (
+              <button className="pr-nav-link" onClick={openHistory}>history</button>
+            )}
+            {phase !== 'history' && (
+              <Link href="/settings" className="pr-nav-link">settings</Link>
+            )}
+            {phase !== 'history' && (
+              <Link href="/blog" className="pr-nav-link">blog</Link>
+            )}
+            {phase !== 'history' && (
+              <Link href="/about" className="pr-nav-link">about</Link>
+            )}
+            {phase === 'history' && (
+              <button className="pr-nav-link" onClick={() => setPhase('home')}>back</button>
+            )}
+          </div>
+        )}
 
         {!inGame && (
           <div className="pr-nav-langs">
@@ -218,7 +251,7 @@ const inGame    = phase === 'think' || phase === 'speak'
               <button
                 key={l}
                 className={`lang-pill ${lang === l ? 'active' : ''}`}
-                onClick={() => switchLang(l)}
+                onClick={() => { switchLang(l); setMenuOpen(false) }}
               >{l.toUpperCase()}</button>
             ))}
           </div>

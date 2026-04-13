@@ -104,6 +104,89 @@ html, body {
 
 .pr-nav-link:hover { color: var(--fg); }
 
+/* Desktop links — hidden on mobile */
+.pr-nav-actions--desktop {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .pr-nav-actions--desktop {
+    display: flex;
+  }
+}
+
+/* Hamburger button — visible on mobile only */
+.pr-nav-burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+@media (min-width: 640px) {
+  .pr-nav-burger {
+    display: none;
+  }
+}
+
+.burger-icon,
+.burger-icon::before,
+.burger-icon::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--fg);
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+  position: relative;
+}
+
+.burger-icon::before,
+.burger-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.burger-icon::before { top: -6px; }
+.burger-icon::after  { top:  6px; }
+
+.burger-icon.open { background: transparent; }
+.burger-icon.open::before { transform: translateY(6px) rotate(45deg); }
+.burger-icon.open::after  { transform: translateY(-6px) rotate(-45deg); }
+
+/* Mobile dropdown menu */
+.pr-nav-mobile-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  padding: 8px 0 4px;
+}
+
+.pr-nav-mobile-menu .pr-nav-link {
+  padding: 12px 0;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  width: 100%;
+}
+
+.pr-nav-mobile-menu .pr-nav-link:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 640px) {
+  .pr-nav-mobile-menu {
+    display: none;
+  }
+}
+
 /* ─── Language pills ──────────────────────────── */
 
 .lang-pill {

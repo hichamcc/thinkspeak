@@ -13,7 +13,7 @@ export default function AboutPage() {
       <nav className="pr-nav">
         <div className="pr-nav-top">
           <span className="pr-nav-brand">ThinkSpeak</span>
-          <Link href="/settings" className="pr-nav-link">back</Link>
+          <Link href="/" className="pr-nav-link">back</Link>
         </div>
       </nav>
 
