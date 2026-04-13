@@ -7,7 +7,7 @@
 :root {
   --bg:          #f8f8f8;
   --fg:          #0a0a0a;
-  --muted:       #aaa;
+  --muted:       #666;
   --border:      #e2e2e2;
   --cell-empty:  #efefef;
   --cell-wrong:  #e74c3c;
@@ -371,20 +371,45 @@ html, body {
 .pr-start:hover { opacity: 0.75; }
 
 .pr-skip {
-  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: transparent;
+  font-family: inherit;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
-  background: none;
-  border: none;
   cursor: pointer;
-  font-family: inherit;
-  padding: 0;
-  transition: color 0.1s;
+  transition: border-color 0.15s, color 0.15s;
 }
 
-.pr-skip:hover { color: var(--fg); }
+.pr-skip:hover { border-color: var(--fg); color: var(--fg); }
+
+.pr-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: transparent;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  align-self: flex-start;
+}
+
+.pr-back:hover { border-color: var(--fg); color: var(--fg); }
 
 .pr-error {
   font-size: 12px;

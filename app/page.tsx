@@ -243,13 +243,13 @@ const inGame    = phase === 'think' || phase === 'speak'
             <p className="home-streak">{streak} day streak</p>
           )}
           <button className="pr-start" onClick={startThink}>start</button>
-          <button className="pr-skip" onClick={nextTopic}>skip</button>
+          <button className="pr-skip" onClick={nextTopic}>next topic →</button>
           <p className="home-mic-note">
             <span className="home-mic-note-label">note</span>{' '}
             your browser will ask for mic access so you can listen back and improve.
             recordings stay on your device only. deny mic to practice without recording.
           </p>
-          <div className="kbd-hint"><kbd>space</kbd> start · <kbd>→</kbd> skip</div>
+          <div className="kbd-hint"><kbd>space</kbd> start · <kbd>→</kbd> next topic</div>
         </div>
       )}
 
@@ -258,7 +258,7 @@ const inGame    = phase === 'think' || phase === 'speak'
           <p className="pr-phase-name">{LABELS.think[lang]}</p>
           <TopicCard topic={topic} lang={lang} showHints />
           <PhaseTimer label={lang === 'en' ? 'think' : `think / ${LABELS.think[lang]}`} timeLeft={timeLeft} total={THINK_SECS} />
-          <button className="pr-skip" onClick={cancelThink}>back</button>
+          <button className="pr-back" onClick={cancelThink}>← back</button>
         </div>
       )}
 
