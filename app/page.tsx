@@ -188,6 +188,22 @@ export default function PracticePage() {
   const totalMins = homeStats ? Math.round(homeStats.totalSecs / 60) : 0
   const [showFeedback, setShowFeedback] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [shareCopied, setShareCopied] = useState(false)
+
+  async function handleShare() {
+    const data = {
+      title: 'ThinkSpeak',
+      text: 'Practice speaking out loud — get a topic, 30s to think, 60s to speak. Free, no account.',
+      url: 'https://thinkspeak.vercel.app',
+    }
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try { await navigator.share(data) } catch { /* cancelled */ }
+    } else {
+      await navigator.clipboard.writeText(data.url)
+      setShareCopied(true)
+      setTimeout(() => setShareCopied(false), 2000)
+    }
+  }
 
   return (
     <main className="pr-screen">
@@ -283,6 +299,9 @@ export default function PracticePage() {
             your browser will ask for mic access so you can listen back and improve.
             recordings stay on your device only. deny mic to practice without recording.
           </p>
+          <button className="home-share" onClick={handleShare}>
+            {shareCopied ? 'link copied!' : 'share this app'}
+          </button>
           <button className="home-lang-suggest" onClick={() => setShowFeedback(true)}>
             want to practice in another language? let us know →
           </button>
