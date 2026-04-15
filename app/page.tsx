@@ -292,8 +292,10 @@ export default function PracticePage() {
           {streak > 0 && (
             <p className="home-streak">{streak} day streak</p>
           )}
-          <button className="pr-start" onClick={startThink}>start</button>
-          <button className="pr-skip" onClick={nextTopic}>next topic →</button>
+          <div className="home-actions">
+            <button className="pr-start" onClick={startThink}>start</button>
+            <button className="pr-skip" onClick={nextTopic}>next topic →</button>
+          </div>
           <p className="home-mic-note">
             <span className="home-mic-note-label">note</span>{' '}
             your browser will ask for mic access so you can listen back and improve.

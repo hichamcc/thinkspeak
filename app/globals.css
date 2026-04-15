@@ -436,6 +436,12 @@ html, body {
 
 /* ─── Start / Skip ────────────────────────────── */
 
+.home-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .pr-start {
   padding: 14px 56px;
   background: var(--fg);
