@@ -54,6 +54,16 @@ function SessionRow({ session, onDeleted }: { session: PracticeSession; onDelete
     if (audioRef.current) audioRef.current.playbackRate = s
   }
 
+  function handleDownload() {
+    const url = URL.createObjectURL(session.blob)
+    const a = document.createElement('a')
+    const slug = session.topic.slice(0, 40).toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+    a.href = url
+    a.download = `thinkspeak-${slug}.webm`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   async function handleDelete() {
     await deleteSession(session.id)
     onDeleted(session.id)
@@ -95,6 +105,7 @@ function SessionRow({ session, onDeleted }: { session: PracticeSession; onDelete
         <button className="history-btn" onClick={togglePlay}>
           {playing ? 'pause' : 'play'}
         </button>
+        <button className="history-btn" onClick={handleDownload} title="Download to upload to ChatGPT, Claude, or any AI for feedback">↓</button>
         <button className="history-btn danger" onClick={handleDelete}>del</button>
       </div>
       <audio

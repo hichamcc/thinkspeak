@@ -24,6 +24,14 @@ export default function Playback({ blob, duration, isShort, onSave, onDiscard }:
   const mins = Math.floor(duration / 60)
   const secs = String(duration % 60).padStart(2, '0')
 
+  function handleDownload() {
+    if (!urlRef.current) return
+    const a = document.createElement('a')
+    a.href = urlRef.current
+    a.download = 'thinkspeak-recording.webm'
+    a.click()
+  }
+
   return (
     <div className="playback">
       <p className="playback-duration">{mins}:{secs}</p>
@@ -36,6 +44,7 @@ export default function Playback({ blob, duration, isShort, onSave, onDiscard }:
           {isShort ? 'save anyway' : 'save'}
         </button>
         <button className="pr-btn" onClick={onDiscard}>discard</button>
+        <button className="pr-btn" onClick={handleDownload} title="Download to upload to an AI for feedback">↓</button>
       </div>
     </div>
   )
