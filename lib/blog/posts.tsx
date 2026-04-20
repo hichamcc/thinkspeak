@@ -162,6 +162,129 @@ export const POSTS: Post[] = [
       </>
     ),
   },
+
+  {
+    slug:        'why-you-sound-different-in-recordings',
+    title:       'Why You Sound Different in Recordings (And Why That Is a Good Thing)',
+    description: 'Everyone hates hearing their own voice on a recording. There is a real reason for that, and once you understand it, recordings become a tool instead of a punishment.',
+    date:        '2026-04-18',
+    content: (
+      <>
+        <p>The first time most people hear a recording of themselves, the reaction is the same: that does not sound like me. The voice is too high, too nasal, too flat, too something. It feels wrong.</p>
+        <p>It is not wrong. It is just unfamiliar. And there is a precise reason for the gap.</p>
+
+        <h2>What you hear vs what everyone else hears</h2>
+        <p>When you speak, you hear yourself through two paths at once. Sound travels through the air and into your ears like normal. But it also travels through the bones of your skull directly to your inner ear, and bone conduction makes low frequencies sound richer and fuller. So the voice you are used to is boosted, warmer, deeper than what actually comes out of your mouth.</p>
+        <p>A recording captures only what came through the air. That is what other people have always heard. When you cringe at a recording, you are not hearing something bad. You are hearing the truth.</p>
+
+        <h2>Why this matters for speaking practice</h2>
+        <p>Most speaking mistakes are invisible from the inside. You cannot feel filler words happening. You cannot sense when your pace is off. You cannot hear your own monotone. Your internal experience of speaking is always more polished than the reality, because your brain is filling in gaps and interpreting charitably.</p>
+        <p>The recording does not interpret. It just captures. That is exactly what makes it useful.</p>
+
+        <h2>Getting past the discomfort</h2>
+        <p>The discomfort of hearing your own voice is a calibration problem. Your brain expects the richer, bone-conducted version, and gets something different. That gap closes with exposure. People who record themselves regularly stop cringing within a few weeks. The voice becomes familiar, and familiar means workable.</p>
+        <p>The speakers who improve fastest are not the ones with the best natural voice. They are the ones willing to listen back without flinching.</p>
+
+        <h2>One thing to listen for each time</h2>
+        <p>Do not try to fix everything at once. Pick one thing per session. Filler words one week. Sentence endings another. Pace after that. Small, specific targets move faster than vague improvement goals.</p>
+
+        <CTA />
+      </>
+    ),
+  },
+
+  {
+    slug:        'thinking-in-a-second-language',
+    title:       'The Difference Between Knowing a Language and Being Able to Speak It',
+    description: 'You can pass a grammar test and still freeze when someone asks you a question. Knowing a language and speaking it fluently are two different skills.',
+    date:        '2026-04-16',
+    content: (
+      <>
+        <p>Language learners hit a wall that no textbook prepares them for. They know the vocabulary. They understand the grammar. They can read articles, follow conversations, write decent sentences. Then someone asks them something in real time and the words stop coming.</p>
+        <p>This is not a knowledge problem. It is a retrieval problem.</p>
+
+        <h2>Recognition vs production</h2>
+        <p>Reading and listening are recognition tasks. You are given the word and your brain confirms it. Speaking is a production task. You have to generate the word from scratch, under time pressure, while simultaneously tracking the conversation, managing tone, and thinking about what comes next.</p>
+        <p>These are different cognitive operations. Training one does not automatically train the other. You can build a large passive vocabulary and still struggle to produce simple sentences under pressure, because you have never practiced the production side.</p>
+
+        <h2>Why classrooms underprepare you</h2>
+        <p>Most language instruction optimizes for recognition. You read texts, translate sentences, pass multiple choice tests. Speaking exercises, when they happen, are usually scripted, low stakes, and forgiving of long pauses.</p>
+        <p>Real conversation has none of that. The other person is waiting. The clock is running. Your brain has to retrieve words fast enough to keep up, which is a skill that only gets built by practicing under that kind of pressure.</p>
+
+        <h2>The rehearsal trap</h2>
+        <p>A common workaround is rehearsing set phrases. You memorize how to introduce yourself, how to order food, how to ask for directions. This works until someone replies in an unexpected way, and the script runs out.</p>
+        <p>Fluency is not having the right phrases memorized. It is being able to construct new sentences in real time from the words you know. That construction process only gets faster by doing it repeatedly, without a script, under mild pressure.</p>
+
+        <h2>What actually builds speaking fluency</h2>
+        <p>Speaking. Specifically, speaking without preparation, on topics you did not anticipate, without being able to stop and look things up. The discomfort of that process is the adaptation. Your brain learns to retrieve faster, to construct sentences with incomplete information, to keep going when the exact word is not there.</p>
+        <p>Five minutes of that kind of practice beats an hour of vocabulary study for spoken fluency.</p>
+
+        <CTA />
+      </>
+    ),
+  },
+
+  {
+    slug:        'the-pause-is-not-the-problem',
+    title:       'The Pause Is Not the Problem',
+    description: 'Most speakers are terrified of silence. They fill every gap with filler words and rushed sentences. But silence in speech is not weakness, it is control.',
+    date:        '2026-04-14',
+    content: (
+      <>
+        <p>Watch recordings of people who are considered excellent speakers. Politicians, professors, comedians, interviewers. One thing stands out once you notice it: they pause. Sometimes for a full second or two. Sometimes in the middle of a sentence.</p>
+        <p>They do not seem to be struggling. They seem to be thinking. And that is exactly right.</p>
+
+        <h2>What filler words actually signal</h2>
+        <p>When you say "um" or "uh" or "like", you are not just making noise. You are signaling to the listener: I am still talking, do not interrupt me. The filler holds the floor while your brain catches up to your mouth.</p>
+        <p>The problem is that after a while, listeners stop hearing the content and start noticing the fillers. Heavy filler use reads as uncertainty, as someone who does not quite believe what they are saying. Even if the content is strong, the delivery undermines it.</p>
+
+        <h2>Silence reads differently than you think</h2>
+        <p>From the inside, a pause feels like failure. You stopped. Something went wrong. The listener is waiting. That anxiety is almost universal.</p>
+        <p>From the outside, a pause reads completely differently. It looks like someone choosing their words. Someone confident enough not to babble. Someone who thinks before speaking instead of speaking while thinking.</p>
+        <p>The gap between how a pause feels and how a pause lands is one of the most useful things to understand about speaking.</p>
+
+        <h2>How to practice tolerating silence</h2>
+        <p>Record yourself answering a question. When you notice a filler word in the playback, go back and do the same question again. This time, when you feel the urge to say "um", say nothing instead. Just wait. Let the silence sit for a beat, then continue.</p>
+        <p>It will feel strange. The recording will sound fine. Do it enough times and the filler habit starts to break, not because you suppressed it, but because your brain learned that the silence is survivable.</p>
+
+        <h2>The one thing to fix first</h2>
+        <p>Do not try to eliminate all fillers at once. Pick one. "Um" is usually the most frequent. Spend two weeks specifically noticing that one word in your recordings. Awareness comes before reduction. You cannot change what you cannot hear.</p>
+
+        <CTA />
+      </>
+    ),
+  },
+
+  {
+    slug:        'how-to-tell-a-better-story',
+    title:       'How to Tell a Better Story When Speaking',
+    description: 'Most spoken stories fail for the same reason: no shape. Here is a simple structure that works for any topic, in any language.',
+    date:        '2026-04-12',
+    content: (
+      <>
+        <p>Most people tell stories the same way. They start at the beginning, add everything they remember in order, and stop when they run out of things to say. The listener is left waiting for a point that never quite arrives.</p>
+        <p>Good storytelling is not about having interesting experiences. It is about shape.</p>
+
+        <h2>The problem with chronological order</h2>
+        <p>Chronological telling puts the listener in the same position you were in before you knew how the story ended. They do not know what to pay attention to. They do not know whether the detail you just gave matters. They are waiting for context that only arrives at the end.</p>
+        <p>Good stories work backwards from the point. You know where you are going, so you only include details that serve that destination. Everything else gets cut.</p>
+
+        <h2>A shape that works every time</h2>
+        <p>Before you start speaking, answer three questions in your head: What happened? Why does it matter? What does the listener take away?</p>
+        <p>Then structure your story around those answers. Open with something that signals what kind of story this is. Build to the central moment. Land on what it meant. That is it. It does not need to be more complex than that.</p>
+
+        <h2>The opening sentence is almost everything</h2>
+        <p>Most stories bury the interesting part. The first thirty seconds are setup, context, background. By the time something actually happens, the listener has half-checked out.</p>
+        <p>Try starting with the most specific, concrete detail from the whole story. Not "I want to tell you about a trip I took last year" but "I was on the side of a road in Morocco at 2am with a dead phone." Now the listener is in. Now you can go back and explain how you got there.</p>
+
+        <h2>Specificity does more than description</h2>
+        <p>Generic details slide off. Specific ones stick. "I was nervous" is nothing. "My voice came out half a pitch higher than normal" is something. The specific version shows the listener rather than telling them, and showing lands harder in spoken storytelling than in writing.</p>
+        <p>When you practice telling a story out loud and listen back, the spots that feel thin are almost always where you went generic. Replace one generic phrase per recording with something specific. The story gets better immediately.</p>
+
+        <CTA />
+      </>
+    ),
+  },
 ]
 
 export function getPost(slug: string): Post | undefined {
