@@ -219,6 +219,9 @@ export default function PracticePage() {
               <Link href="/settings" className="pr-nav-link">settings</Link>
             )}
             {phase !== 'history' && !inGame && (
+              <Link href="/tools" className="pr-nav-link">tools</Link>
+            )}
+            {phase !== 'history' && !inGame && (
               <Link href="/blog" className="pr-nav-link">blog</Link>
             )}
             {phase !== 'history' && !inGame && (
@@ -248,6 +251,9 @@ export default function PracticePage() {
             )}
             {phase !== 'history' && (
               <Link href="/settings" className="pr-nav-link">settings</Link>
+            )}
+            {phase !== 'history' && (
+              <Link href="/tools" className="pr-nav-link">tools</Link>
             )}
             {phase !== 'history' && (
               <Link href="/blog" className="pr-nav-link">blog</Link>
