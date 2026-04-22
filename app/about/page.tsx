@@ -60,6 +60,22 @@ export default function AboutPage() {
             — no personal data, no recording content, no identifiers.
           </p>
         </section>
+
+        <section className="about-section">
+          <h2 className="about-heading">Language tools</h2>
+          <p className="about-text">
+            Beyond speaking practice, ThinkSpeak includes a set of free tools to help you improve across all language skills.
+          </p>
+          <ul className="about-tools-list">
+            <li><Link href="/tools/reading" className="about-tool-link">Reading Speed</Link> — train your brain to read faster without losing comprehension.</li>
+            <li><Link href="/tools/shadowing" className="about-tool-link">Shadowing</Link> — listen to a sentence, record yourself repeating it, compare your rhythm and tone.</li>
+            <li><Link href="/tools/flashcards" className="about-tool-link">Flashcards</Link> — vocabulary in French, Spanish, Arabic, and Japanese with romanization.</li>
+            <li><Link href="/tools/dictation" className="about-tool-link">Dictation</Link> — hear a sentence and type exactly what you heard to sharpen your listening.</li>
+            <li><Link href="/tools/tongue-twisters" className="about-tool-link">Tongue Twisters</Link> — practice pronunciation and articulation with difficulty levels.</li>
+            <li><Link href="/tools/debate" className="about-tool-link">Debate</Link> — argue both sides of a prompt to build fluency under pressure.</li>
+            <li><Link href="/tools/word-association" className="about-tool-link">Word Association</Link> — speak freely about a single word for 30 seconds to boost spontaneity.</li>
+          </ul>
+        </section>
       </div>
     </main>
   )

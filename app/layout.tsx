@@ -11,7 +11,13 @@ export const metadata: Metadata = {
     template: '%s | ThinkSpeak',
   },
   description: 'Practice speaking English, French, Spanish, Arabic, or Japanese. 30 seconds to think, 60 seconds to speak. No account, no server — everything stays on your device.',
-  keywords: ['language practice', 'speaking practice', 'english practice', 'french practice', 'spanish practice', 'arabic practice', 'japanese practice', 'fluency', 'oral practice'],
+  keywords: [
+    'language practice', 'speaking practice', 'oral fluency',
+    'english practice', 'french practice', 'spanish practice', 'arabic practice', 'japanese practice',
+    'language tools', 'shadowing technique', 'dictation practice', 'language flashcards',
+    'reading speed', 'tongue twisters', 'debate practice', 'word association',
+    'free language learning', 'speak a language',
+  ],
   alternates: {
     canonical: BASE_URL,
   },
