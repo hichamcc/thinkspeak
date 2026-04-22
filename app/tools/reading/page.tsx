@@ -44,7 +44,11 @@ export default function ReadingToolPage() {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   function loadText(text: string) {
-    const w = text.trim().split(/\s+/).filter(Boolean)
+    const cleaned = text
+      .replace(/["""«»<>«»\[\]{}()|\\/_+=@#$%^&*~`]+/g, ' ')  // strip non-word punctuation
+      .replace(/\s+/g, ' ')
+      .trim()
+    const w = cleaned.split(/\s+/).filter(Boolean)
     if (w.length === 0) return
     setWords(w)
     setIndex(0)
