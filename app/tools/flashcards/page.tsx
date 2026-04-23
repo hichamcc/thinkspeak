@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import { FLASHCARDS, type Language } from '@/lib/tools/data'
+import { FLASHCARDS, type Language, type FlashLevel } from '@/lib/tools/data'
 
 const LANGS: { code: Language; label: string }[] = [
   { code: 'fr', label: 'Français' },
@@ -11,13 +11,20 @@ const LANGS: { code: Language; label: string }[] = [
   { code: 'ja', label: '日本語'    },
 ]
 
+const LEVELS: { code: FlashLevel; label: string }[] = [
+  { code: 'beginner',     label: 'Beginner'     },
+  { code: 'intermediate', label: 'Intermediate' },
+  { code: 'advanced',     label: 'Advanced'     },
+]
+
 function shuffle<T>(arr: T[]): T[] {
   return [...arr].sort(() => Math.random() - 0.5)
 }
 
 export default function FlashcardsPage() {
   const [lang, setLang]       = useState<Language>('fr')
-  const [deck, setDeck]       = useState(() => shuffle(FLASHCARDS))
+  const [level, setLevel]     = useState<FlashLevel>('beginner')
+  const [deck, setDeck]       = useState(() => shuffle(FLASHCARDS.filter(c => c.level === 'beginner')))
   const [idx, setIdx]         = useState(0)
   const [flipped, setFlipped] = useState(false)
   const [known, setKnown]     = useState(0)
@@ -29,12 +36,21 @@ export default function FlashcardsPage() {
 
   function changeLang(l: Language) {
     setLang(l)
-    reset()
+    resetDeck(level, l)
+  }
+
+  function changeLevel(lv: FlashLevel) {
+    setLevel(lv)
+    resetDeck(lv, lang)
+  }
+
+  function resetDeck(lv: FlashLevel, _lang: Language) {
+    setDeck(shuffle(FLASHCARDS.filter(c => c.level === lv)))
+    setIdx(0); setFlipped(false); setKnown(0); setMissed([]); setFinished(false); setReviewing(false)
   }
 
   function reset() {
-    setDeck(shuffle(FLASHCARDS))
-    setIdx(0); setFlipped(false); setKnown(0); setMissed([]); setFinished(false); setReviewing(false)
+    resetDeck(level, lang)
   }
 
   function handleKnow() {
@@ -99,6 +115,22 @@ export default function FlashcardsPage() {
                 {l.code.toUpperCase()}
               </button>
             ))}
+          </div>
+
+          {/* Level selector */}
+          <div className="tool-wpm-row" style={{ gap: 6 }}>
+            <span className="tool-wpm-label">level</span>
+            <div className="tool-wpm-pills">
+              {LEVELS.map(lv => (
+                <button
+                  key={lv.code}
+                  className={`tool-wpm-pill ${level === lv.code ? 'active' : ''}`}
+                  onClick={() => changeLevel(lv.code)}
+                >
+                  {lv.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Progress */}
